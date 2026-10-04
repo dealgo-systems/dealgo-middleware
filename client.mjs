@@ -27,6 +27,20 @@ export class DeAlgo {
   }
   listPayments() { return this.#request("/api/v1/refundable-payments"); }
   listRefunds() { return this.#request("/api/v1/refund-requests"); }
+  listMandates() { return this.#request("/api/v1/commerce/mandates"); }
+  listProposals() { return this.#request("/api/v1/commerce/proposals"); }
+  async propose({ mandateId, action, counterpartyId, amountMinor, currency, description, requestKey }) {
+    if (typeof mandateId !== "string" || !/^[a-zA-Z0-9-]{1,100}$/.test(mandateId) || !["purchase","sale","refund","payout","subscription"].includes(action) || typeof counterpartyId !== "string" || !counterpartyId.trim() || counterpartyId.length > 100 || !Number.isSafeInteger(amountMinor) || amountMinor <= 0 || amountMinor > 2147483647 || !/^[a-z]{3}$/.test(currency ?? "") || typeof description !== "string" || !description.trim() || description.length > 1000 || !/^[a-zA-Z0-9_-]{8,128}$/.test(requestKey ?? "")) throw new DeAlgoError("invalid_commerce_proposal");
+    return this.#withCommerceReview(await this.#request("/api/v1/commerce/proposals", {mandateId,action,counterpartyId,amountMinor,currency,description}, requestKey));
+  }
+  async getProposal(id) {
+    if (typeof id !== "string" || !/^[a-zA-Z0-9-]{1,100}$/.test(id)) throw new DeAlgoError("invalid_request_id");
+    return this.#withCommerceReview(await this.#request(`/api/v1/commerce/proposals/${encodeURIComponent(id)}`));
+  }
+  #withCommerceReview(result) {
+    if (!result.proposal || typeof result.proposal.id !== "string" || !["PENDING","APPROVED","REJECTED","CANCELLED"].includes(result.proposal.status) || result.executionEnabled !== false) throw new DeAlgoError("invalid_response");
+    return {...result,approvalUrl:`${this.#url}/commerce/control`};
+  }
   async requestRefund({ decisionId, amountMinor, reason = null, requestKey }) {
     if (typeof decisionId !== "string" || !/^[a-zA-Z0-9_-]{1,100}$/.test(decisionId) || !Number.isSafeInteger(amountMinor) || amountMinor <= 0 || amountMinor > 2147483647 || !/^[a-zA-Z0-9_-]{8,128}$/.test(requestKey ?? "")) throw new DeAlgoError("invalid_refund_request");
     if (reason !== null && !["duplicate", "fraudulent", "requested_by_customer"].includes(reason)) throw new DeAlgoError("invalid_reason");

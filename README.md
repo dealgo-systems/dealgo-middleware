@@ -1,11 +1,13 @@
 # DeAlgo middleware pilot
 
+Version 0.2 adds bounded financial proposals for purchases, sales, refunds, payouts, and subscriptions. Read the [commerce quickstart](COMMERCE.md). General proposal approval does not execute a payment. The refund workflow remains separate.
+
 [Try the simulated walkthrough](https://dealgo-portal.vercel.app/agent-refunds) · [Evaluate the pilot](PILOT.md) · [Request a pilot discussion](https://github.com/dealgo-systems/dealgo-middleware/issues/new?template=pilot.yml)
 
 Install the prerelease artifact directly:
 
 ```sh
-npm install --global https://github.com/dealgo-systems/dealgo-middleware/releases/download/v0.1.0/dealgo-middleware-0.1.0.tgz
+npm install --global https://github.com/dealgo-systems/dealgo-middleware/releases/download/v0.2.0/dealgo-middleware-0.2.0.tgz
 ```
 
 This repository contains only the MIT-licensed client and MCP adapter. It requires a separately configured DeAlgo pilot server; it is not a standalone payment processor or a public hosted service signup.
@@ -17,10 +19,10 @@ This is an installable pilot artifact, not a package published on the npm regist
 ## Connect in three steps
 
 1. Open your Portal's `/v3/refund-requests` page as a workspace administrator. Click **Create restricted agent connection**. Save the one-time key. It can only request refunds and read payment/request status; revoke it from the Portal's API Keys page when finished.
-2. Download `dealgo-middleware-0.1.0.tgz` from the middleware page. Install it and check the connection:
+2. Download `dealgo-middleware-0.2.0.tgz` from the middleware page. Install it and check the connection:
 
 ```sh
-npm install --global ./dealgo-middleware-0.1.0.tgz
+npm install --global ./dealgo-middleware-0.2.0.tgz
 export DEALGO_URL="https://YOUR-PILOT-PORTAL"
 export DEALGO_API_KEY="YOUR-RESTRICTED-CONNECTION-KEY"
 dealgo-middleware doctor
@@ -45,7 +47,7 @@ Ask your agent: “List DeAlgo payments, request a 2,500-minor-unit refund for t
 Install the same artifact into your application instead of globally:
 
 ```sh
-npm install ./dealgo-middleware-0.1.0.tgz
+npm install ./dealgo-middleware-0.2.0.tgz
 ```
 
 ```js
