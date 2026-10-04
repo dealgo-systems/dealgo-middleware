@@ -1,0 +1,14 @@
+{
+  "name": "@dealgo/middleware",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Operator-approved refund requests for DeAlgo, with a JavaScript client and MCP adapter",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "exports": { ".": { "types": "./client.d.ts", "import": "./client.mjs" } },
+  "bin": { "dealgo-middleware": "./cli.mjs" },
+  "files": ["client.mjs", "client.d.ts", "cli.mjs", "mcp.mjs", "README.md", "LICENSE"],
+  "scripts": { "test": "node --test tests/*.test.mjs" },
+  "dependencies": { "@modelcontextprotocol/sdk": "1.32.0", "zod": "4.6.5" }
+}
