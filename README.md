@@ -1,6 +1,6 @@
 # DeAlgo middleware pilot
 
-[Evaluate the pilot](PILOT.md) · [Request a pilot discussion](https://github.com/dealgo-systems/dealgo-middleware/issues/new?template=pilot.yml)
+[Try the simulated walkthrough](https://dealgo-portal.vercel.app/agent-refunds) · [Evaluate the pilot](PILOT.md) · [Request a pilot discussion](https://github.com/dealgo-systems/dealgo-middleware/issues/new?template=pilot.yml)
 
 Install the prerelease artifact directly:
 
