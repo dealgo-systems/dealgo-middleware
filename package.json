@@ -1,14 +1,36 @@
 {
   "name": "@dealgo/middleware",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
-  "description": "Operator-approved refund requests for DeAlgo, with a JavaScript client and MCP adapter",
+  "description": "Bounded agent financial proposals and operator-approved test refunds, with JavaScript and MCP",
   "type": "module",
-  "engines": { "node": ">=20" },
-  "exports": { ".": { "types": "./client.d.ts", "import": "./client.mjs" } },
-  "bin": { "dealgo-middleware": "./cli.mjs" },
-  "files": ["client.mjs", "client.d.ts", "cli.mjs", "mcp.mjs", "README.md", "LICENSE"],
-  "scripts": { "test": "node --test tests/*.test.mjs" },
-  "dependencies": { "@modelcontextprotocol/sdk": "1.32.0", "zod": "4.6.5" }
+  "engines": {
+    "node": ">=20"
+  },
+  "exports": {
+    ".": {
+      "types": "./client.d.ts",
+      "import": "./client.mjs"
+    }
+  },
+  "bin": {
+    "dealgo-middleware": "./cli.mjs"
+  },
+  "files": [
+    "client.mjs",
+    "client.d.ts",
+    "cli.mjs",
+    "mcp.mjs",
+    "README.md",
+    "LICENSE",
+    "COMMERCE.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.0",
+    "zod": "4.6.5"
+  }
 }
