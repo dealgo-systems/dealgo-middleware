@@ -1,0 +1,39 @@
+name: Pilot interest
+description: Describe a non-sensitive test workflow for the DeAlgo refund pilot.
+title: "Pilot interest: "
+body:
+  - type: markdown
+    attributes:
+      value: "This issue is public. Use fictional examples only. Do not post API keys, personal data, payment identifiers, or private business information. The current pilot supports configured workspaces and Stripe test refunds only."
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Intended workflow
+      description: What should the agent request, and who should approve it?
+    validations:
+      required: true
+  - type: dropdown
+    id: connection
+    attributes:
+      label: Preferred connection
+      options:
+        - MCP
+        - JavaScript
+        - HTTP
+        - Undecided
+    validations:
+      required: true
+  - type: textarea
+    id: success
+    attributes:
+      label: Success criteria
+      description: What would make this test useful compared with your current workflow?
+    validations:
+      required: true
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Pilot scope
+      options:
+        - label: I understand this is a supervised test-mode evaluation requiring a configured DeAlgo server, not a live-money service.
+          required: true
